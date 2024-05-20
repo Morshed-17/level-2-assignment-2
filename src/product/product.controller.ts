@@ -24,6 +24,15 @@ const createProduct = async (req: Request, res: Response) => {
 
 const getAllProducts = async (req: Request, res: Response) => {
   try {
+    const { searchTerm } = req.query
+    if (searchTerm) {
+      const result = await productServices.searchMovies(searchTerm )
+      return res.json({
+        success: true,
+        message: 'Products fetched successfully!',
+        data: result,
+      })
+    }
     const result = await productServices.getAllProducts()
     res.json({
       success: true,
@@ -43,7 +52,7 @@ const getProductById = async (req: Request, res: Response) => {
     const { productId } = req.params
     const result = await productServices.getProductById(productId)
     if (!result) {
-     return res.json({
+      return res.json({
         success: false,
         message: 'Product not found',
         data: result,

@@ -11,6 +11,11 @@ const getAllProducts = async () => {
   return result
 }
 
+const searchMovies = async (searchTerm: unknown) => {
+  const result = Product.find({ $text: { $search: searchTerm as string } })
+  return result
+}
+
 const getProductById = async (id: string) => {
   const result = await Product.findById(id)
   return result
@@ -33,5 +38,6 @@ export const productServices = {
   createProduct,
   getAllProducts,
   getProductById,
-  updateProduct
+  updateProduct,
+  searchMovies,
 }
