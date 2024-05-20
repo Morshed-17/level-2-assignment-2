@@ -15,13 +15,31 @@ const createProduct = async (req: Request, res: Response) => {
     })
   } catch (err) {
     res.json({
-        success: true,
-        message: 'something went wrong',
-        data: err,
-      })
+      success: false,
+      message: 'something went wrong',
+      data: err,
+    })
+  }
+}
+
+const getAllProducts = async (req: Request, res: Response) => {
+  try {
+    const result = await productServices.getAllProducts()
+    res.json({
+      success: true,
+      message: 'Products fetched successfully!',
+      data: result,
+    })
+  } catch (err) {
+    res.json({
+      success: false,
+      message: 'something went wrong',
+      data: err,
+    })
   }
 }
 
 export const productControllers = {
   createProduct,
+  getAllProducts
 }

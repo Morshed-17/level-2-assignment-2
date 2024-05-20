@@ -4,5 +4,6 @@ const router = express.Router()
 
 
 router.post('/', productControllers.createProduct)
+router.get('/', productControllers.getAllProducts)
 
 export const productRouter = router
