@@ -42,6 +42,13 @@ const getProductById = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params
     const result = await productServices.getProductById(productId)
+    if (!result) {
+     return res.json({
+        success: false,
+        message: 'Product not found',
+        data: result,
+      })
+    }
     res.json({
       success: true,
       message: 'Product fetched successfully!',
@@ -59,7 +66,10 @@ const updateProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params
     const updatedProduct = req.body
-    const result = await productServices.updateProduct(productId, updatedProduct)
+    const result = await productServices.updateProduct(
+      productId,
+      updatedProduct,
+    )
     res.json({
       success: true,
       message: 'Product updated successfully!',
@@ -74,10 +84,9 @@ const updateProduct = async (req: Request, res: Response) => {
   }
 }
 
-
 export const productControllers = {
   createProduct,
   getAllProducts,
   getProductById,
-  updateProduct
+  updateProduct,
 }
