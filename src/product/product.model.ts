@@ -41,7 +41,6 @@ const productSchema = new Schema<TProduct>({
   },
   tags: {
     type: [[String]],
-    required: true,
   },
   variants: {
     type: [variantsSchema],
