@@ -16,6 +16,6 @@ export const productValidationSchema = z.object({
   price: z.number().min(1, 'Prize is required'),
   category: z.string().min(1, 'Category is required'),
   tags: z.string().array(),
-  variants: z.array(variantsValidationSchema),
+  variants: z.array(variantsValidationSchema).min(1, "varitants are required"),
   inventory: inventoryValidationSchema,
 })
