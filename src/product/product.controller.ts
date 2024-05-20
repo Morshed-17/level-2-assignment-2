@@ -26,7 +26,7 @@ const getAllProducts = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query
     if (searchTerm) {
-      const result = await productServices.searchMovies(searchTerm )
+      const result = await productServices.searchMovies(searchTerm)
       return res.json({
         success: true,
         message: 'Products fetched successfully!',
