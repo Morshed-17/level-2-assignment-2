@@ -8,7 +8,7 @@ const createOrder = async (payLoad: TOrder) => {
 
 const getAllOrders = async (email: unknown) => {
   if (typeof email === 'string') {
-    const result = await Order.findOne({ email })
+    const result = await Order.find({ email })
     return result
   }
   const result = await Order.find()
