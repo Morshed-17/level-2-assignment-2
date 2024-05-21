@@ -16,7 +16,7 @@ Before you begin, ensure you have met the following requirements:
 1. **Clone the repository:**
     ```bash
     git clone <repository-url>
-    cd assignment-2
+    cd level-2-assignment-2
     ```
 
 2. **Install dependencies:**
