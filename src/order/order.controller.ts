@@ -10,7 +10,7 @@ const createOrder = async (req: Request, res: Response) => {
       message: 'Order created successfully!',
       data: result,
     })
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     res.json({
       success: false,
@@ -24,13 +24,19 @@ const getAllOrders = async (req: Request, res: Response) => {
     const { email } = req.query
     const result = await orderServices.getAllOrders(email)
     if (email) {
-      return res.json({
-        success: true,
-        message: 'Orders fetched successfully for user email!',
-        data: result,
-      })
+      if (!result) {
+        return res.json({
+          success: false,
+          message: 'Order not found',
+        })
+      } else {
+        return res.json({
+          success: true,
+          message: 'Orders fetched successfully for user email!',
+          data: result,
+        })
+      }
     }
-    
 
     res.json({
       success: true,

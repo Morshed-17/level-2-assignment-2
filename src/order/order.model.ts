@@ -24,7 +24,7 @@ const orderSchema = new Schema<TOrder>({
 orderSchema.pre('save', async function (next) {
   const result = await Product.findById(this.productId)
   if (!result) {
-    throw new Error("Product does not exists by this productId")
+    throw new Error('Product does not exists by this productId')
     next()
   }
   next()
