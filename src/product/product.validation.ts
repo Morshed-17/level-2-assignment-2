@@ -1,7 +1,11 @@
 import { z } from 'zod'
 
 const inventoryValidationSchema = z.object({
-  quantity: z.number().int().nonnegative().min(1, 'quantity is required'),
+  quantity: z
+    .number()
+    .int()
+    .nonnegative('quantity cannot be negetive')
+    .min(1, 'quantity is required'),
   inStock: z.boolean(),
 })
 
