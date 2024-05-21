@@ -27,6 +27,31 @@ orderSchema.pre('save', async function (next) {
     throw new Error('Product does not exists by this productId')
     next()
   }
+  // checks if the requested quantity is greater then the product quantity
+  
+  const product = await Product.findById(this.productId)
+  if (product && product?.inventory.quantity < this.quantity) {
+    throw new Error('Insufficient quantity available in inventory')
+  }
+  // reduce the product quantity
+  const updatedProduct = await Product.findByIdAndUpdate(
+    this.productId,
+    {
+      $inc: {
+        'inventory.quantity': -this.quantity,
+      },
+    },
+    { new: true },
+  )
+  // update the instock if quantity is 0
+  if (updatedProduct?.inventory.quantity === 0) {
+    await Product.findByIdAndUpdate(this.productId, {
+      $set: {
+        'inventory.inStock': false,
+      },
+    })
+  }
+
   next()
 })
 
