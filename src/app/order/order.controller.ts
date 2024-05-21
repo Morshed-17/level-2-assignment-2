@@ -37,6 +37,13 @@ const getAllOrders = async (req: Request, res: Response) => {
           message: 'Order not found',
         })
       } else {
+        if (result.length === 0) {
+          return res.json({
+            success: false,
+            message: 'no order found for this user email!',
+            data: result,
+          })
+        }
         return res.json({
           success: true,
           message: 'Orders fetched successfully for user email!',
