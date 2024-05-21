@@ -1,11 +1,12 @@
 import { Request, Response } from 'express'
 import { productServices } from './product.service'
-import { productValidationSchema } from './product.validation'
+import { productValidationSchema, productValidationSchemaForUpdate } from './product.validation'
 
 const createProduct = async (req: Request, res: Response) => {
   try {
     const data = req.body
     const product = productValidationSchema.parse(data)
+
     const result = await productServices.createProduct(product)
 
     res.json({
@@ -66,7 +67,8 @@ const getProductById = async (req: Request, res: Response) => {
 const updateProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params
-    const updatedProduct = req.body
+    const data = req.body
+    const updatedProduct = productValidationSchemaForUpdate.parse(data)
     const result = await productServices.updateProduct(
       productId,
       updatedProduct,

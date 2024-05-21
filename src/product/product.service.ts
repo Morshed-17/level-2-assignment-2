@@ -20,7 +20,8 @@ const getProductById = async (id: string) => {
   return result
 }
 
-const updateProduct = async (id: string, updatedProduct: TProduct) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const updateProduct = async (id: string, updatedProduct: any) => {
   const result = await Product.findByIdAndUpdate(
     id,
     {
@@ -37,11 +38,10 @@ const deleteProduct = async (id: string) => {
   return result
 }
 
-
 export const productServices = {
   createProduct,
   getAllProducts,
   getProductById,
   updateProduct,
-  deleteProduct
+  deleteProduct,
 }

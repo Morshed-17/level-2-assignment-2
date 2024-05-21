@@ -23,3 +23,5 @@ export const productValidationSchema = z.object({
   variants: z.array(variantsValidationSchema).min(1, 'varitants are required'),
   inventory: inventoryValidationSchema,
 })
+
+export const productValidationSchemaForUpdate = productValidationSchema.partial()
