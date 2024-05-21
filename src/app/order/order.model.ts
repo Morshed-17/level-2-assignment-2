@@ -30,7 +30,7 @@ orderSchema.pre('save', async function (next) {
 
   const {
     inventory: { quantity },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }: any = await Product.findById(this.productId)
 
   if (quantity < this.quantity) {

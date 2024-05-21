@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import { productRouter } from './product/product.route'
-import { orderRouter } from './order/order.route'
+import { productRouter } from './app/product/product.route'
+import { orderRouter } from './app/order/order.route'
+
 const app = express()
 
 // parsers
