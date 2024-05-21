@@ -14,9 +14,15 @@ const createOrder = async (req: Request, res: Response) => {
     })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    if (err.name === 'ZodError') {
+      return res.json({
+        success: false,
+        message: err,
+      })
+    }
     res.json({
       success: false,
-      message: err.issues[0].message || err.message,
+      message: err.message,
     })
   }
 }
