@@ -20,8 +20,7 @@ const getProductById = async (id: string) => {
   return result
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const updateProduct = async (id: string, updatedProduct: any) => {
+const updateProduct = async (id: string, updatedProduct: TProduct) => {
   const result = await Product.findByIdAndUpdate(
     id,
     {

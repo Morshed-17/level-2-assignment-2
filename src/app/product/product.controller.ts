@@ -1,9 +1,6 @@
 import { Request, Response } from 'express'
 import { productServices } from './product.service'
-import {
-  productValidationSchema,
-  productValidationSchemaForUpdate,
-} from './product.validation'
+import { productValidationSchema } from './product.validation'
 
 const createProduct = async (req: Request, res: Response) => {
   try {
@@ -71,7 +68,7 @@ const updateProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params
     const data = req.body
-    const updatedProduct = productValidationSchemaForUpdate.parse(data)
+    const updatedProduct = productValidationSchema.parse(data)
     const result = await productServices.updateProduct(
       productId,
       updatedProduct,
