@@ -6,18 +6,16 @@ const createOrder = async (payLoad: TOrder) => {
   return result
 }
 
-const getAllOrders = async () => {
+const getAllOrders = async (email: unknown) => {
+  if (typeof email === 'string') {
+    const result = await Order.findOne({ email })
+    return result
+  }
   const result = await Order.find()
-  return result
-}
-
-const getOrdersByEmail = async (email: string) => {
-  const result = await Order.findOne({ email })
   return result
 }
 
 export const orderServices = {
   createOrder,
   getAllOrders,
-  getOrdersByEmail,
 }
