@@ -10,11 +10,12 @@ const createOrder = async (req: Request, res: Response) => {
       message: 'Order created successfully!',
       data: result,
     })
-  } catch (err) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     res.json({
       success: false,
       message: 'something went wrong',
-      data: err,
+      data: err.message,
     })
   }
 }
