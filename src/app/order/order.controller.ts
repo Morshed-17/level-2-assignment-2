@@ -15,12 +15,12 @@ const createOrder = async (req: Request, res: Response) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     if (err.name === 'ZodError') {
-      return res.json({
+      return res.status(500).json({
         success: false,
         message: err,
       })
     }
-    res.json({
+    res.status(500).json({
       success: false,
       message: err.message,
     })
@@ -32,7 +32,7 @@ const getAllOrders = async (req: Request, res: Response) => {
     const result = await orderServices.getAllOrders(email)
     if (email) {
       if (!result) {
-        return res.json({
+        return res.status(500).json({
           success: false,
           message: 'Order not found',
         })
@@ -51,7 +51,7 @@ const getAllOrders = async (req: Request, res: Response) => {
       data: result,
     })
   } catch (err) {
-    res.json({
+    res.status(500).json({
       success: false,
       message: 'something went wrong',
       data: err,

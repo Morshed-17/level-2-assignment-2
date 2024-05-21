@@ -15,7 +15,7 @@ const createProduct = async (req: Request, res: Response) => {
       data: result,
     })
   } catch (err) {
-    res.json({
+    res.status(500).json({
       success: false,
       message: 'something went wrong',
       data: err,
@@ -33,7 +33,7 @@ const getAllProducts = async (req: Request, res: Response) => {
       data: result,
     })
   } catch (err) {
-    res.json({
+    res.status(500).json({
       success: false,
       message: 'something went wrong',
       data: err,
@@ -45,7 +45,7 @@ const getProductById = async (req: Request, res: Response) => {
     const { productId } = req.params
     const result = await productServices.getProductById(productId)
     if (!result) {
-      return res.json({
+      return res.status(400).json({
         success: false,
         message: 'Product not found',
         data: result,
@@ -57,7 +57,7 @@ const getProductById = async (req: Request, res: Response) => {
       data: result,
     })
   } catch (err) {
-    res.json({
+    res.status(500).json({
       success: false,
       message: 'something went wrong',
       data: err,
@@ -79,7 +79,7 @@ const updateProduct = async (req: Request, res: Response) => {
       data: result,
     })
   } catch (err) {
-    res.json({
+    res.status(500).json({
       success: false,
       message: 'something went wrong',
       data: err,
@@ -97,7 +97,7 @@ const deleteProduct = async (req: Request, res: Response) => {
       data: null,
     })
   } catch (err) {
-    res.json({
+    res.status(500).json({
       success: false,
       message: 'something went wrong',
       data: err,
