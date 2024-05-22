@@ -5,19 +5,19 @@ import { Product } from '../product/product.model'
 const orderSchema = new Schema<TOrder>({
   email: {
     type: String,
-    required: true,
+    required: [true, "email is required"],
   },
   productId: {
     type: String,
-    required: true,
+    required: [true, "productId is required"],
   },
   price: {
     type: Number,
-    required: true,
+    required: [true, "price is required"],
   },
   quantity: {
     type: Number,
-    required: true,
+    required: [true, "quantity is required"],
   },
 })
 
