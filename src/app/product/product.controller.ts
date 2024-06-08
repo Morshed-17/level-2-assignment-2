@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
 import { productServices } from './product.service'
 import { productValidationSchema } from './product.validation'
+import httpStatus from 'http-status'
+import sendResponse from '../utils/sendResponse'
 
 const createProduct = async (req: Request, res: Response) => {
   try {
@@ -9,7 +11,8 @@ const createProduct = async (req: Request, res: Response) => {
 
     const result = await productServices.createProduct(product)
 
-    res.json({
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
       success: true,
       message: 'Product created successfully!',
       data: result,

@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import { productRouter } from './app/product/product.route'
-import { orderRouter } from './app/order/order.route'
+import { routes } from './app/routes'
 
 const app = express()
 
@@ -11,8 +10,7 @@ app.use(cors())
 
 // routers
 
-app.use('/api/products', productRouter)
-app.use('/api/orders', orderRouter)
+app.use('/api/v1', routes)
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!')
@@ -25,5 +23,7 @@ app.all('*', (req, res, next) => {
   })
   next()
 })
+
+
 
 export default app
